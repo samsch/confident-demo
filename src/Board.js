@@ -21,6 +21,21 @@ const styles = {
     background-color: white;
     border: solid .2rem rgb(218, 218, 0);
   `,
+  blackCell: css`
+    background-color: black;
+  `,
+  redCell: css`
+    background-color: red;
+  `,
+};
+
+const reverseMap = (array, func) => {
+  const output = [];
+  // eslint-disable-next-line for-direction
+  for (let index = array.length - 1; index >= 0; index -= 1) {
+    output.push(func(array[index], index, array));
+  }
+  return output;
 };
 
 const printPlayed = state => {
@@ -47,7 +62,7 @@ const Board = ({
             key={columnIndex}
             className={styles.column}
           >
-            {column.map((played, rowIndex) => {
+            {reverseMap(column, (played, rowIndex) => {
               return (
                 <button
                   key={rowIndex}

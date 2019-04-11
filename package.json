@@ -62,6 +62,7 @@
     "@babel/polyfill": "^7.2.5",
     "emotion": "^10.0.9",
     "normalize.css": "^8.0.1",
+    "ramda": "^0.26.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3"
   }
