@@ -60,6 +60,8 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "classnames": "^2.2.6",
+    "create-error": "^0.3.1",
     "emotion": "^10.0.9",
     "normalize.css": "^8.0.1",
     "ramda": "^0.26.1",

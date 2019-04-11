@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from 'emotion';
+import classNames from 'classnames';
 
 const styles = {
   board: css`
@@ -12,6 +13,10 @@ const styles = {
     flex: 0 0 5rem;
     padding: .5rem;
     background-color: yellow;
+    border: none;
+    &:hover {
+      background-color: rgb(230, 211, 0);
+    }
   `,
   cell: css`
     width: 4rem;
@@ -58,23 +63,26 @@ const Board = ({
     >
       {board.map((column, columnIndex) => {
         return (
-          <div
+          <button
             key={columnIndex}
             className={styles.column}
+            type="button"
+            onClick={() => onDrop(columnIndex)}
           >
             {reverseMap(column, (played, rowIndex) => {
               return (
-                <button
+                <div
                   key={rowIndex}
-                  className={styles.cell}
-                  type="button"
-                  onClick={() => onDrop(columnIndex)}
+                  className={classNames(styles.cell, {
+                    [styles.blackCell]: played === 'black',
+                    [styles.redCell]: played === 'red',
+                  })}
                 >
                   {printPlayed(played)}
-                </button>
+                </div>
               );
             })}
-          </div>
+          </button>
         );
       })}
     </div>
