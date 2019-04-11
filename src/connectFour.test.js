@@ -93,5 +93,16 @@ describe('findWinner logic', () => {
       [null, redd, blak, null, null, null],
     ];
     expect(findWinner(winningSet2)).toBe('red');
+
+    const winningSet3 = [
+      [null, null, null, null, null, null],
+      [blak, blak, blak, redd, null, null],
+      [redd, blak, redd, null, null, null],
+      [blak, redd, redd, null, null, null],
+      [redd, blak, null, null, null, null],
+      [redd, null, null, null, null, null],
+      [blak, null, null, null, null, null],
+    ];
+    expect(findWinner(winningSet3)).toBe('red');
   });
 });

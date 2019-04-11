@@ -65,7 +65,7 @@ const relative = [
   [[0, 0], [1, 0], [2, 0], [3, 0]], // horizontal
   [[0, 0], [0, 1], [0, 2], [0, 3]], // vertical
   [[0, 0], [1, 1], [2, 2], [3, 3]], // diagonal up
-  [[0, 0], [1, -1], [2, -2], [-3, -3]], // diagonal down
+  [[0, 0], [1, -1], [2, -2], [3, -3]], // diagonal down
 ];
 const makeAbsoluteVictories = (x, y) => {
   return relative.map(vectors => {
