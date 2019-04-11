@@ -6,7 +6,7 @@ import Messages from './Messages';
 
 const App = () => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const { board, messages, nextTurn } = state;
+  const { board, messages, nextTurn, winner } = state;
   return (
     <div>
       <h1 className={styles.heading}>
@@ -19,9 +19,25 @@ const App = () => {
             dispatch({ type: 'drop', column });
           }}
         />
-        <p>
-          {nextTurn === 'black' ? 'Black' : 'Red'}&apos;s turn!
-        </p>
+        {winner ? (
+          <p>
+            {winner.toUpperCase()} WINS!
+          </p>
+        ) : (
+          <p>
+            {nextTurn === 'black' ? 'Black' : 'Red'}&apos;s turn!
+          </p>
+        )}
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch('reset');
+            }}
+          >
+            Reset
+          </button>
+        </div>
       </div>
       <Messages messages={messages} />
     </div>

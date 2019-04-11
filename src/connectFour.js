@@ -24,7 +24,7 @@ const addMessage = (state, text, type = 'error') => {
   return {
     ...state,
     messages: [
-      { id: unique(), text: 'This column is already filled!', type },
+      { id: unique(), text, type },
       ...state.messages,
     ]
   };
@@ -99,6 +99,9 @@ export const findWinner = board => {
 };
 
 export const reducer = reducerErrors(handleReducerError)((state, action) => {
+  if (action === 'reset') {
+    return initialState;
+  }
   if (action.type === 'drop') {
     if (state.winner) {
       throw new GameFinishedError();
@@ -108,7 +111,7 @@ export const reducer = reducerErrors(handleReducerError)((state, action) => {
     return {
       ...state,
       board,
-      messages: winner ? addMessage(state, `${state.winner/*.toUpperCase()*/} WINS!`, 'win').messages : state.messages,
+      messages: winner ? addMessage(state, 'Game finished', 'win').messages : state.messages,
       nextTurn: state.nextTurn === 'black' ? 'red' : 'black',
       winner,
     };
