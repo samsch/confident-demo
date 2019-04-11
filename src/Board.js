@@ -56,10 +56,11 @@ const printPlayed = state => {
 const Board = ({
   board,
   onDrop,
+  className,
 }) => {
   return (
     <div
-      className={styles.board}
+      className={classNames(className, styles.board)}
     >
       {board.map((column, columnIndex) => {
         return (
@@ -78,7 +79,7 @@ const Board = ({
                     [styles.redCell]: played === 'red',
                   })}
                 >
-                  {printPlayed(played)}
+                  <span className="sr-only">{printPlayed(played)}</span>
                 </div>
               );
             })}
@@ -91,5 +92,6 @@ const Board = ({
 Board.propTypes = {
   board: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.oneOf([null, 'black', 'red']))).isRequired,
   onDrop: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 export default Board;
