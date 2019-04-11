@@ -1,9 +1,10 @@
 /* eslint-env jest */
-import { allMatch, findWinner } from './connectFour';
+import { allMatch, findWinner, checkCellForWin } from './connectFour';
 
 // Copy from here to make tests
 
 // Bottom left                  top left
+// eslint-disable-next-line
 const baseBoard = [
   [null, null, null, null, null, null],
   [null, null, null, null, null, null],
@@ -52,6 +53,8 @@ describe('allMatch logic', () => {
       [false, redd, [
         [3, 2], [4, 2], [5, 2], [6, 2],
       ]],
+      [true, redd, [
+      ]],
     ];
     testSets.forEach(([shouldBe, color, vectors]) => {
       const result = allMatch(winningSets, color, vectors);
@@ -75,6 +78,20 @@ describe('findWinner logic', () => {
       [null, redd, redd, blak, null, null],
       [null, redd, blak, null, null, null],
     ];
-    expect(findWinner(winningSet)).toBe('red');
+    expect(checkCellForWin(winningSet, 2, 2)).toBe(false);
+    expect(checkCellForWin(winningSet, 0, 0)).toBe(true);
+    expect(checkCellForWin(winningSet, 0, 2)).toBe(true);
+    expect(findWinner(winningSet)).toBe('black');
+
+    const winningSet2 = [
+      [null, null, redd, redd, null, redd],
+      [null, blak, null, null, null, null],
+      [null, null, null, null, null, null],
+      [null, redd, redd, blak, null, blak],
+      [null, redd, redd, null, blak, null],
+      [null, redd, redd, blak, null, null],
+      [null, redd, blak, null, null, null],
+    ];
+    expect(findWinner(winningSet2)).toBe('red');
   });
 });

@@ -75,6 +75,13 @@ const makeAbsoluteVictories = (x, y) => {
   });
 };
 
+export const checkCellForWin = (board, x, y) => {
+  const victoryVectors = makeAbsoluteVictories(x, y);
+  return victoryVectors.some(vectors => {
+    return allMatch(board, board[x][y], vectors);
+  });
+};
+
 export const findWinner = board => {
   let winner = null;
   board.forEach((column, x) => {
@@ -85,10 +92,7 @@ export const findWinner = board => {
       if (!color) {
         return false;
       }
-      const victoryVectors = makeAbsoluteVictories(x, y);
-      return victoryVectors.some(vectors => {
-        return allMatch(board, board[x, y], vectors);
-      });
+      return checkCellForWin(board, x, y);
     }) || null;
   });
   return winner;
@@ -104,7 +108,7 @@ export const reducer = reducerErrors(handleReducerError)((state, action) => {
     return {
       ...state,
       board,
-      messages: winner ? addMessage(state, `${state.winner.toUpperCase()} WINS!`, 'win').messages : state.messages,
+      messages: winner ? addMessage(state, `${state.winner/*.toUpperCase()*/} WINS!`, 'win').messages : state.messages,
       nextTurn: state.nextTurn === 'black' ? 'red' : 'black',
       winner,
     };
