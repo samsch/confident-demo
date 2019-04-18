@@ -39,7 +39,7 @@ const styles = {
     border: none;
   `,
   winMessage: css`
-  border-left: solid 1rem green;
+    border-left: solid 1rem green;
   `,
 };
 
