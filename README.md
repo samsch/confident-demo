@@ -2,6 +2,8 @@
 
 Alternating regular gameplay demo.
 
+[Live demo](https://samsch.github.io/connect-four-demo/)
+
 ## Running this project
 
 You need a current version of Node.js installed (currently testing and building with Node v10.8.0 and npm v6.2.0, but latest LTS should be fine).
